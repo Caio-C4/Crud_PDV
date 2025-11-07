@@ -6,10 +6,10 @@
    <XailerVersion Value="3.2"/>
    <Compiler Value="Harbour"/>
    <CCompiler Value="BCC"/>
-   <MainModule Value=""/>
+   <MainModule Value="FrmPrincipal.prg"/>
    <MultipleInstances Value="Y"/>
    <XPManifest Value="Y"/>
-   <Icon Value=""/>
+   <Icon Value="ciclope"/>
    <Parameters Value=""/>
    <OEM Value="N"/>
    <Version>
@@ -65,6 +65,8 @@
    </VCS>
    <Files>
       <File Filename="Crud.prg"/>
+      <File Filename="Imagens.rc"/>
+      <File Filename="FrmPrincipal.prg"/>
    </Files>
    <Libraries>
       <Library Filename="[xailer]xailer"/>
