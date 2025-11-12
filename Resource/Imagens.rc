@@ -1,0 +1,8 @@
+ciclope   icon   "ciclope.ico"
+fundo     jpg    "fundo.jpg"
+incluir   bitmap "incluir.bmp"
+alterar   bitmap "alterar.bmp"
+excluir   bitmap "excluir.bmp"
+filtrar   bitmap "filtrar.bmp"
+fechar    bitmap "fechar.bmp"
+confirmar bitmap "confirmar.bmp

@@ -1,12 +1,164 @@
-METHOD CreateForm( lCreate ) CLASS TForm1
+METHOD CreateForm( lCreate ) CLASS TFrmPrincipal
 
    IF lCreate
-      ::SetBounds( 220, 120, 450, 300 )
-      ::SetClientSize( 434, 261 )
-      ::cText := "Form1"
+      ::SetBounds( 209, 189, 780, 431 )
+      ::SetClientSize( 764, 392 )
+      ::cText := "Crud PDV"
       ::oFont := TFont():Create( "MS Sans Serif", 8, 0, 400 )
+      ::lParentIcon := .F.
+      ::oIcon := "ciclope"
+      ::nShowMode := smMAXIMIZE
+      ::OnInitialize := "FormInitialize"
       ::Create()
    ENDIF
    ::Super:CreateForm( .F. )
+
+   WITH OBJECT ::oMenuPrincipal := TMenu():New( Self )
+      :Create()
+      WITH OBJECT :AddItem( "Cadastros" )
+         WITH OBJECT :AddMenu()
+            :AddItem( "Produtos" ):OnClick := "MenuPrincipalProdutosClick"
+            :AddItem( "Clientes" ):OnClick := "MenuPrincipalClientesClick"
+         END
+      END
+      :SetMenu() 
+   END
+
+   ::oMySQL := TMySQLDatasource():Create( Self )
+
+   WITH OBJECT ::oPages := TPages():New( Self )
+      :SetBounds( 0, 0, 764, 372 )
+      :nAlign := alCLIENT
+      :oBkgnd := "fundo"
+      :nBkgndMode := blSTRETCHSMOOTH
+      :nIndex := 1
+      WITH OBJECT ::oPageProdutos := TPage():New( ::oPages )
+         :lTransparent := .F.
+         :Create()
+      END
+
+      WITH OBJECT ::oPageClientes := TPage():New( ::oPages )
+         :lTransparent := .F.
+         :Create()
+      END
+
+      :Create()
+   END
+
+         WITH OBJECT ::oExplorerBarProdutos := TExplorerBar():New( ::oPageProdutos )
+            :SetBounds( 0, 0, 200, 372 )
+            :AddItem( "Opções" )
+            :Create()
+         END
+
+            WITH OBJECT ::oOptionListProdutos := TOptionList():New( ::oExplorerBarProdutos )
+               :SetBounds( 11, 36, 178, 140 )
+               WITH OBJECT :oImageList
+                  :nWidth := 16
+                  :nHeight := 16
+                  :Add( "incluir" )
+                  :Add( "alterar" )
+                  :Add( "excluir" )
+                  :Add( "fechar" )
+                  :Add( "filtrar" )
+               END
+               WITH OBJECT :AddItem( "Novo Produto", 1 )
+                  :OnClick := "OptionNovoProdutoClick"
+               END
+               :AddItem( "Alterar Produto", 2 )
+               :AddItem( "Excluir", 3 )
+               :AddSeparator()
+               :AddItem( "Ativar Filtro", 5 )
+               :AddSeparator()
+               WITH OBJECT :AddItem( "Fechar", 4 )
+                  :OnClick := "OptionFecharClick"
+               END
+               :Create()
+            END
+
+         WITH OBJECT ::oBrowseProdutos := TDBBrowse():New( ::oPageProdutos )
+            :SetBounds( 200, 0, 564, 372 )
+            :nAlign := alCLIENT
+            WITH OBJECT TDBBrwColumn():New( ::oBrowseProdutos )
+               :cHeader := "Código"
+               :nAlignment := taRIGHTHEADERCENTER
+               :nWidth := 68
+               :oDataField := "(TDataField)"
+               :Create()
+            END
+
+            WITH OBJECT TDBBrwColumn():New( ::oBrowseProdutos )
+               :cHeader := "Nome"
+               :nAlignment := taLEFTHEADERCENTER
+               :nWidth := 389
+               :oDataField := "(TDataField)"
+               :Create()
+            END
+
+            WITH OBJECT TDBBrwColumn():New( ::oBrowseProdutos )
+               :cHeader := "Estoque"
+               :nAlignment := taRIGHTHEADERCENTER
+               :nWidth := 82
+               :oDataField := "(TDataField)"
+               :Create()
+            END
+
+            TBrwRecSel():Create( ::oBrowseProdutos )
+
+            :Create()
+         END
+
+         WITH OBJECT ::oExplorerBarClientes := TExplorerBar():New( ::oPageClientes )
+            :SetBounds( 0, 0, 200, 372 )
+            :AddItem( "Opções" )
+            :Create()
+         END
+
+            WITH OBJECT ::oOptionListClientes := TOptionList():New( ::oExplorerBarClientes )
+               :SetBounds( 11, 36, 178, 140 )
+               WITH OBJECT :oImageList
+                  :nWidth := 16
+                  :nHeight := 16
+                  :Add( "incluir" )
+                  :Add( "alterar" )
+                  :Add( "excluir" )
+                  :Add( "filtrar" )
+                  :Add( "fechar" )
+               END
+               :AddItem( "Novo Cliente", 1 )
+               :AddItem( "Alterar Cliente", 2 )
+               :AddItem( "Excluir Cliente", 3 )
+               :AddSeparator()
+               :AddItem( "Ativar Filtro", 4 )
+               :AddSeparator()
+               WITH OBJECT :AddItem( "Fechar", 5 )
+                  :OnClick := "OptionFecharClick"
+               END
+               :Create()
+            END
+
+         WITH OBJECT ::oBrowseClientes := TDBBrowse():New( ::oPageClientes )
+            :SetBounds( 200, 0, 564, 372 )
+            :nAlign := alCLIENT
+            WITH OBJECT TDBBrwColumn():New( ::oBrowseClientes )
+               :cHeader := "Código"
+               :nAlignment := taRIGHTHEADERCENTER
+               :nWidth := 89
+               :oDataField := "(TDataField)"
+               :Create()
+            END
+
+            WITH OBJECT TDBBrwColumn():New( ::oBrowseClientes )
+               :cHeader := "Nome"
+               :nAlignment := taLEFTHEADERCENTER
+               :nWidth := 389
+               :oDataField := "(TDataField)"
+               :Create()
+            END
+
+            TBrwRecSel():Create( ::oBrowseClientes )
+
+            :Create()
+         END
 
 RETURN Self

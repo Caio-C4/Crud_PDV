@@ -5,7 +5,7 @@
    <Output Value="Crud.exe"/>
    <XailerVersion Value="3.2"/>
    <Compiler Value="Harbour"/>
-   <CCompiler Value="BCC"/>
+   <CCompiler Value="MinGW"/>
    <MainModule Value="FrmPrincipal.prg"/>
    <MultipleInstances Value="Y"/>
    <XPManifest Value="Y"/>
@@ -16,7 +16,7 @@
       <Version Value="1.0"/>
       <Release Value="0"/>
       <Build Value="0"/>
-      <Company Value=""/>
+      <Company Value="Sommus Sistemas"/>
       <CopyRight Value=""/>
       <TradeMarks Value=""/>
       <Comments Value=""/>
@@ -67,14 +67,15 @@
       <File Filename="Crud.prg"/>
       <File Filename="Imagens.rc"/>
       <File Filename="FrmPrincipal.prg"/>
+      <File Filename="FrmProduto.prg"/>
    </Files>
    <Libraries>
-      <Library Filename="[xailer]xailer"/>
+      <Library Filename="[xailer]xailer" First="Y"/>
       <Library Filename="[xailer]xailertcls"/>
       <Library Filename="[xailer]samples"/>
       <Library Filename="[xailer]sqlite" Link="N"/>
-      <Library Filename="[xailer]libmariadb" Link="N"/>
-      <Library Filename="[xailer]libmysql" Link="N"/>
+      <Library Filename="[xailer]mariadb" Link="N"/>
+      <Library Filename="[xailer]mysql" Link="N"/>
       <Library Filename="[xailer]xailer.res"/>
       <Library Filename="[xailer]xailermsg.res"/>
       <Library Filename="[harbour]hbextern"/>
@@ -108,12 +109,35 @@
       <Library Filename="[harbour]minizip"/>
       <Library Filename="[harbour]hbzlib"/>
       <Library Filename="[harbour]xharbour"/>
-      <Library Filename="[bcc]c0w32.obj"/>
-      <Library Filename="[bcc]psdk\odbc32.lib"/>
-      <Library Filename="[bcc]psdk\msimg32.lib"/>
-      <Library Filename="[bcc]cw32.lib"/>
-      <Library Filename="[bcc]import32.lib"/>
-      <Library Filename="[bcc]wininet.lib"/>
+      <Library Filename="[mingw]crt2.o"/>
+      <Library Filename="[mingw]gcc\mingw32\4.8.1\crtbegin.o"/>
+      <Library Filename="[mingw]mingw32"/>
+      <Library Filename="[mingw]gcc\mingw32\4.8.1\gcc"/>
+      <Library Filename="[mingw]moldname"/>
+      <Library Filename="[mingw]mingwex"/>
+      <Library Filename="[mingw]msvcrt"/>
+      <Library Filename="[mingw]kernel32"/>
+      <Library Filename="[mingw]user32"/>
+      <Library Filename="[mingw]gdi32"/>
+      <Library Filename="[mingw]advapi32"/>
+      <Library Filename="[mingw]ws2_32"/>
+      <Library Filename="[mingw]winspool"/>
+      <Library Filename="[mingw]comctl32"/>
+      <Library Filename="[mingw]comdlg32"/>
+      <Library Filename="[mingw]shell32"/>
+      <Library Filename="[mingw]uuid"/>
+      <Library Filename="[mingw]ole32"/>
+      <Library Filename="[mingw]oleaut32"/>
+      <Library Filename="[mingw]oledlg"/>
+      <Library Filename="[mingw]mpr"/>
+      <Library Filename="[mingw]winmm"/>
+      <Library Filename="[mingw]mapi32"/>
+      <Library Filename="[mingw]imm32"/>
+      <Library Filename="[mingw]msimg32"/>
+      <Library Filename="[mingw]odbc32"/>
+      <Library Filename="[mingw]wininet"/>
+      <Library Filename="[mingw]version"/>
+      <Library Filename="[mingw]setupapi"/>
    </Libraries>
 </Project>
 
